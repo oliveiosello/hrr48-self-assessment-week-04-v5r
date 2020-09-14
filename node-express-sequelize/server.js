@@ -7,12 +7,16 @@ var User = sequelize.define('User', {
   username: Sequelize.STRING
 });
 
-/*  Create a '/users' route that responds to 
-    a GET request with all users in the database */
+app.get('/users', (req, res) => {
+  // get users from db
 
+})
 
-
-module.exports = { 
+module.exports = {
   app: app,
   User: User
 };
+
+
+/*  Create a '/users' route that responds to
+    a GET request with all users in the database */
