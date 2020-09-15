@@ -22,7 +22,17 @@ var getWordCount = function(filePath, callback) {
 //  call cb taking null and wc + wc
 
 var getTotalWordCount = function(filePathOne, filePathTwo, callback) {
-  getWordCount(filePathOne, (err, wordCount1))
+  getWordCount(filePathOne, (err, wordCount1) => {
+    if (err) {
+      throw err;
+    }
+    getWordCount(filePathTwo, (err, wordCount2) => {
+      if (err) {
+        throw err;
+      }
+      callback(wordCount1 + wordCount2)
+    })
+  })
 };
 
 module.exports = getTotalWordCount;

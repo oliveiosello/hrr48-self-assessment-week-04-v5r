@@ -9,8 +9,10 @@ var User = sequelize.define('User', {
 
 app.get('/users', (req, res) => {
   // get users from db
-
-})
+  User.findAll().then(users => {
+    res.json(users);
+  })
+});
 
 module.exports = {
   app: app,
