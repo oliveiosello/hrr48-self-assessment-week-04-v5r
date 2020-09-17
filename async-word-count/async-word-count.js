@@ -1,8 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 
-var getWordCount = function(filePath, callback) {
-  fs.readFile(filePath, 'utf-8', function(err, data) {
+var getWordCount = function (filePath, callback) {
+  fs.readFile(filePath, 'utf-8', function (err, data) {
     if (err) {
       callback(err, null);
       return;
@@ -21,18 +21,18 @@ var getWordCount = function(filePath, callback) {
 //    handle err
 //  call cb taking null and wc + wc
 
-var getTotalWordCount = function(filePathOne, filePathTwo, callback) {
+var getTotalWordCount = function (filePathOne, filePathTwo, callback) {
   getWordCount(filePathOne, (err, wordCount1) => {
     if (err) {
-      throw err;
+      callback(err, null);
     }
     getWordCount(filePathTwo, (err, wordCount2) => {
       if (err) {
-        throw err;
+        callback(err, null);
       }
-      callback(wordCount1 + wordCount2)
-    })
-  })
+      callback(null, wordCount1 + wordCount2);
+    });
+  });
 };
 
 module.exports = getTotalWordCount;
